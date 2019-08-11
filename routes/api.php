@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::namespace('admin')->prefix('admin/v1')->group(function () {
+Route::namespace('Admin')->prefix('admin/v1')->group(function () {
     Route::get('index/{id}', 'InfoController@show');
     Route::post('index', 'InfoController@index');
     Route::post('info', 'InfoController@store');
@@ -31,7 +31,7 @@ Route::namespace('admin')->prefix('admin/v1')->group(function () {
     Route::post('infoEditSetting', 'InfoController@infoEditSetting');
 });
 
-Route::namespace('admin')->prefix('info/v1')->group(function () {
+Route::namespace('Admin')->prefix('info/v1')->group(function () {
     Route::post('index', 'InfoController@infoIndex');
     Route::get('infoData', 'InfoController@infoData');
     Route::post('infoVisit', 'InfoController@infoVisit');
