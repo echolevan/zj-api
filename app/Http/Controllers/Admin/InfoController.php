@@ -131,6 +131,8 @@ class InfoController extends Controller
 
         $setting = DB::table('setting')->first();
 
+        $setting->end_at = strtotime($setting->end_at) * 1000;
+
         return response(['data'=> [
             'total'=> $total,
             'setting'=> $setting,
