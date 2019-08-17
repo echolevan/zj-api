@@ -22,12 +22,13 @@ class InfoController extends Controller
     public function index(Request $request)
     {
         $page = $request->page ?? 1;
+        $size = $request->get('size', 10);
         $info = new Info();
         $total = $info->count();
-        $list = $info->forPage($page, 10)->latest('num')->latest('created_at')->get();
+        $list = $info->forPage($page, $size)->latest('num')->latest('created_at')->get();
 
-        $list = $list->map(function ($i, $index) use ($page) {
-            $i->rank = ($page - 1) * 10 + $index + 1;
+        $list = $list->map(function ($i, $index) use ($page, $size) {
+            $i->rank = ($page - 1) * $size + $index + 1;
             return $i;
         });
         return response(['data' => [
